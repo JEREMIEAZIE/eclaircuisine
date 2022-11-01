@@ -379,7 +379,7 @@
       <hr />
       <h2>Reservation form</h2>
       <p>Please fill all of the boxes.</p>
-      <form action="">
+      <form action="" name="resa">
         <div class="form-group">
           <label for="fn">First Name:</label>
           <input
@@ -406,7 +406,6 @@
             type="text"
             class="form-control"
             id="em"
-            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
             name="Email"
             required
           />
@@ -450,7 +449,15 @@
           <label for="order">Order:</label>
           <textarea class="form-control" rows="5" id="order"></textarea>
         </div>
-        <button type="submit" id="send" class="btn btn-primary">Submit</button>
+        <button
+          id="send"
+          type="submit"
+          name="submit"
+          value="Submit"
+          onclick="ValidateEmail(document.resa.Email)"
+          class="btn btn-primary"
+        />
+
         <button type="reset" id="send" class="btn btn-warning">clear</button>
       </form>
     </div>
@@ -479,6 +486,16 @@
     <div>
       <a class="fa-solid fa-arrow-up" href="#navbar"></a>
     </div>
+    <script>
+      function ValidateEmail(inputText) {
+        const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if (inputText.value.match(mailformat)) {
+          console.log("ok");
+        } else {
+          alert("You have entered an invalid email address!");
+        }
+      }
+    </script>
 
     <script>
       const submit = document.getElementById("send");
@@ -493,35 +510,41 @@
         const order = document.getElementById("order").value;
         const pn = document.getElementById("pn").value;
         const em = document.getElementById("em").value;
-
-        if (
-          pn == null ||
-          fn == null ||
-          ln == null ||
-          am == null ||
-          da == null ||
-          em == null
-        ) {
-          alert("Please fill all the fields below");
-        } else if (pn.length != 8) {
-          alert(
-            "the please enter your phone number in the format 230-9999-9999"
-          );
-        } else if (am < 1) {
-          alert("Please enter valid number");
-        } else {
-          console.log(
-            `Mr/Miss ${fn} ${ln} wants to reserve a table for ${am} person for the ${da}.
-           His/Her Ordered for the reservation is ${order}.
-          For more information you can call Mr/Miss ${fn} ${ln} on the ${pn} or send an email at ${em}.`
-          );
-          alert(
-            "Your Reservation has been send please wait for an answer from us"
-          );
+        function ValidateEmail(inputText) {
+          const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+          if (inputText.value.match(mailformat)) {
+            if (
+              pn == null ||
+              fn == null ||
+              ln == null ||
+              am == null ||
+              da == null ||
+              em == null
+            ) {
+              alert("Please fill all the fields below");
+            } else if (pn.length != 8) {
+              alert(
+                "the please enter your phone number in the format 230-9999-9999"
+              );
+            } else if (am < 1) {
+              alert("Please enter valid number");
+            } else {
+              console.log(
+                `Mr/Miss ${fn} ${ln} wants to reserve a table for ${am} person for the ${da}.
+               His/Her Ordered for the reservation is ${order}.
+              For more information you can call Mr/Miss ${fn} ${ln} on the ${pn} or send an email at ${em}.`
+              );
+              alert(
+                "Your Reservation has been send please wait for an answer from us"
+              );
+            }
+          } else {
+            alert("You have entered an invalid email address!");
+          }
         }
       });
     </script>
-    <script></script>
+
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
       integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -545,3 +568,4 @@
     <script src="index.js"></script>
   </body>
 </html>
+
