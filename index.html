@@ -546,35 +546,7 @@
         }
       }
 
-      submit.addEventListener("click", (e) => {
-        e.preventDefault();
-
-        if (
-          pn == null ||
-          fn == null ||
-          ln == null ||
-          am == null ||
-          da == null ||
-          em == null
-        ) {
-          alert("Please fill all the fields below");
-        } else if (pn.length != 8) {
-          alert(
-            "the please enter your phone number in the format 230-9999-9999"
-          );
-        } else if (am < 1) {
-          alert("Please enter valid number");
-        } else {
-          console.log(
-            `Mr/Miss ${fn} ${ln} wants to reserve a table for ${am} person for the ${da}.
-           His/Her Ordered for the reservation is ${order}.
-          For more information you can call Mr/Miss ${fn} ${ln} on the ${pn} or send an email at ${em}.`
-          );
-          alert(
-            "Your Reservation has been send please wait for an answer from us"
-          );
-        }
-      });
+    
     </script>
 
     <script
