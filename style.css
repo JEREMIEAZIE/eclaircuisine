@@ -184,6 +184,9 @@ a {
   background-color: black;
   border-radius: 10px;
 }
+.footer .row {
+  background-color: red;
+}
 
 @media screen and (max-width: 800px) {
   footer {
